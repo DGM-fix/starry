@@ -638,21 +638,21 @@ footer {
   .styles-grid { grid-template-columns: 1fr; }
   .gallery-item { width: calc(50% - 3px); }
   .counter-row { gap: 2rem; }
-}
-/* ─── MARCA D'ÁGUA ─── */
-body::after {
-  content: 'GRUPO DGM';
+    }
+    /* marca d'água */
+body::before {
+  content: "GRUPO DGM";
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotate(-35deg);
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 900;
-  color: rgba(189, 184, 187, 0.621);
+  transform: translate(-50%, -50%) rotate(-30deg);
+
+  font-size: 6rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.5em;
+
+  color: rgba(255, 255, 255, 0.541);
+
   pointer-events: none;
-  z-index: 9999;
-  white-space: nowrap;
-  letter-spacing: 0.1em;
-  font-family: 'Playfair Display', serif;
-  user-select: none;
+  z-index: 1; /* fica atrás de TUDO */
 }
