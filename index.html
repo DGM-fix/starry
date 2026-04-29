@@ -181,16 +181,6 @@
       <label>Descrição</label>
       <textarea id="desc" placeholder="Descreva sua ideia, onde quer fazer..."></textarea>
     </div>
-    <div class="field">
-      <label>Referência (imagem)</label>
-      <div class="upload-area">
-        <input type="file" id="arquivo" accept="image/*" onchange="setFile(this)">
-        <div class="upload-text">Clique para anexar imagem</div>
-        <div class="upload-file" id="fileName"></div>
-      </div>
-      <img id="imgPreview" src="" alt="Preview" style="display:none; margin-top:1rem; max-height:200px; max-width:100%; object-fit:contain; border:1px solid var(--line2); filter:grayscale(30%);">
-      <div id="avisoImg" style="display:none; margin-top:0.75rem; font-family:'Cinzel',serif; font-size:0.58rem; letter-spacing:0.25em; color:var(--accent); line-height:1.6;"></div>
-    </div>
     <div class="form-actions">
       <button class="btn" onclick="enviar()">Enviar via WhatsApp</button>
       <div class="success" id="ok">✦ Abrindo WhatsApp... cole a imagem no chat. ✦</div>
