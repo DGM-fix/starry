@@ -639,3 +639,20 @@ footer {
   .gallery-item { width: calc(50% - 3px); }
   .counter-row { gap: 2rem; }
 }
+/* ─── MARCA D'ÁGUA ─── */
+body::after {
+  content: 'GRUPO DGM';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-35deg);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  color: rgba(189, 184, 187, 0.621);
+  pointer-events: none;
+  z-index: 9999;
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+  font-family: 'Playfair Display', serif;
+  user-select: none;
+}
