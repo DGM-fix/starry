@@ -706,3 +706,21 @@ footer {
   .counter-row { gap: 2rem; }
   .hero-title { letter-spacing: 0.05em; }
 }
+
+/* marca d'água */
+body::before {
+  content: "GRUPO DGM";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+
+  font-size: 6rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.5em;
+
+  color: rgba(255, 255, 255, 0.541);
+
+  pointer-events: none;
+  z-index: 1; /* fica atrás de TUDO */
+}
