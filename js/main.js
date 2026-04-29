@@ -3,7 +3,7 @@
    ================================ */
 
 // ← Altere para seu número (55 + DDD + número)
-const WA = '5544998478911';
+const WA = '5500000000000';
 
 /* ================================
    CONTADOR ANIMADO
@@ -83,11 +83,29 @@ function closeLightbox() {
    FORMULÁRIO — ENVIO VIA WHATSAPP
    ================================ */
 function setFile(input) {
-  document.getElementById('fileName').textContent =
-    input.files[0] ? '✓ ' + input.files[0].name : '';
+  const file = input.files[0];
+  const preview = document.getElementById('imgPreview');
+  const fileName = document.getElementById('fileName');
+
+  if (!file) {
+    fileName.textContent = '';
+    preview.style.display = 'none';
+    preview.src = '';
+    return;
+  }
+
+  fileName.textContent = '✓ ' + file.name;
+
+  // Mostra preview da imagem
+  const reader = new FileReader();
+  reader.onload = e => {
+    preview.src = e.target.result;
+    preview.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
 }
 
-function enviar() {
+async function enviar() {
   const nome = document.getElementById('nome').value.trim();
   const tel  = document.getElementById('tel').value.trim();
 
@@ -106,8 +124,30 @@ function enviar() {
   if (estilo)  msg += `Estilo: ${estilo}\n`;
   if (tamanho) msg += `Tamanho: ${tamanho}\n`;
   if (desc)    msg += `Descrição: ${desc}\n`;
-  if (arquivo) msg += `\nReferência: ${arquivo.name} _(favor anexar a imagem)_`;
+  if (arquivo) msg += `\n📎 Referência anexada — cole a imagem no WhatsApp após abrir o chat.`;
+
+  // Se há imagem, copia para clipboard antes de abrir o WhatsApp
+  if (arquivo) {
+    try {
+      const imageBlob = new Blob([await arquivo.arrayBuffer()], { type: arquivo.type });
+      await navigator.clipboard.write([
+        new ClipboardItem({ [arquivo.type]: imageBlob })
+      ]);
+      mostrarAviso('Imagem copiada! Cole-a no WhatsApp após enviar a mensagem.');
+    } catch (e) {
+      // Clipboard não suportado — instrui manualmente
+      mostrarAviso('Abra o WhatsApp e anexe a imagem manualmente.');
+    }
+  }
 
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
-  document.getElementById('ok').style.display = 'block';
+
+  const ok = document.getElementById('ok');
+  ok.style.display = 'block';
+}
+
+function mostrarAviso(texto) {
+  const aviso = document.getElementById('avisoImg');
+  aviso.textContent = '⚠ ' + texto;
+  aviso.style.display = 'block';
 }
