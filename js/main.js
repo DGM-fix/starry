@@ -3,7 +3,7 @@
    ================================ */
 
 // ← Altere para seu número (55 + DDD + número)
-const WA = '5500000000000';
+const WA = '554187891312';
 
 /* ================================
    CONTADOR ANIMADO
